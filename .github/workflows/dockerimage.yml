@@ -11,11 +11,11 @@ jobs:
     steps:
     - uses: actions/checkout@v1
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag locmai/test-gh-actions/hello-world:$GITHUB_SHA
+      run: docker build . --file Dockerfile --tag ${{ github.repository }}/hello-world:0.0.1
     - name: Publish to Registry
       uses: elgohr/Publish-Docker-Github-Action@master
       with:
-        name: locmai/test-gh-actions/hello-world:$GITHUB_SHA
+        name: ${{ github.repository }}/hello-world:0.0.1
         username: ${{ secrets.DOCKER_USERNAME }}
         password: ${{ secrets.DOCKER_PASSWORD }}
         registry: docker.pkg.github.com
